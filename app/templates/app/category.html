@@ -1,0 +1,43 @@
+{%  extends 'app/base.html' %}
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+{% block login %} 
+      <div class="row"style='width:100%'> 
+        {%for product in products %}
+          <div class= "col-lg-3" >
+            <div id="new-arrivals-slider" class="owl-carousel owl-theme " style="opacity: 1; display: block;">
+                <div class="owl-item" style="width: 335px; left:4%; right:9%">
+                  <div class="item ">			
+                   <div class="product-item fixheight" style="height: 440px;">
+                      <div class="shadow"style="height: 250px;">  <a href="{%url 'detail'%}?id={{product.id}}" class"thumb"> <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                        <img src="{%  static "app/images/shadow.png" %}" alt="..." ><a/><a href="" class="buy-now"> Mua Ngay</a> </div> 
+                           
+              <div class="product-info box-element">
+                  <h6><strong>{{product.name}}</strong></h6>
+                      <hr>
+                      <button data-product={{product.id}} data-action ="add" class="btn btn-outline-success add-btn update-cart">
+                        <span><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng </span></button>
+                      <a class="btn btn-outline-dark" href= "{%url 'detail'%}?id={{product.id}}" ><i class="fa fa-eye" aria-hidden="true"></i> Chi tiết</a>
+                      <div class="product-price">
+                        <span class="current-price">${{product.price}}  </span>
+                      </div>
+                </div>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+           {% endfor %}
+    </div>
+        {%endblock login%}
+    </body>
+</html>

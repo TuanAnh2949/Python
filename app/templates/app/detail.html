@@ -1,0 +1,89 @@
+{%  extends 'app/base.html' %}
+{% load static %}
+
+            
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{%static 'app/css/style.css'%}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    </head>
+    <body>
+        {% block detail %}  
+        {%for product in products %}
+   
+        <div class="flex-box">
+            <div class="left">
+                <div class="big-img">
+                    <img src="{{product.ImageURL }}">
+                </div>
+            <div class="images">
+                <div class="small-img">
+                    <img src="{{product.ImageURL }}" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="{{product.Image2URL }}" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="{{product.Image3URL }}" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="{{product.Image4URL }}" onclick="showImg(this.src)">
+                </div>
+            </div>
+        </div>
+   
+
+    <div class="right">
+        <div class="pname"> {{product.name }}</div>
+        <div class="ratings">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+        </div>
+        <div class="price">
+             <span class="current-price">Giá của sản phẩm: ${{product.price}}</span></div>
+        <div class="size">
+            <p>Size  :</p>
+            <div class="psize active">45</div>
+            <div class="psize active">37</div>
+            <div class="psize active">42</div>
+            <div class="psize active">25</div>
+        </div>
+        <div class="quantity">
+            <p>Số Lượng: </p>
+            <input data-product ={{item.product.id}} data-action ='add'
+            data-product ={{item.product.id}} data-action ='remove'
+        type="number" min="1" max="5" value="1">
+            
+        </div>
+        <div class="btn-box">
+            <button data-product={{product.id}} data-action ="add" class="cart-btn add-btn update-cart">Thêm vào giỏ hàng</button>
+            <button class="buy-btn">Mua ngay</button>
+
+        </div>
+    </div>
+    </div>
+</div>
+        <script >
+            let bigImg=document.querySelector('.big-img img');
+            function showImg(pic){
+                bigImg.src=pic;
+
+            }
+
+        </script>
+        {%endfor%}
+        {%endblock detail%}
+    </body>
+    
+</html>
+       
+   

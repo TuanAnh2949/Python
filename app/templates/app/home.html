@@ -1,0 +1,172 @@
+{%  extends 'app/base.html' %}
+{% load static %}
+{% block banner_slider %} 
+<div id="carouselExampleDark" class="carousel carousel-dark slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{%static 'app/images/banner/slide01.jpg'%}" class="d-block w-100" alt="..." height= '400', width='100'>
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{%static 'app/images/banner/slide02.jpg'%}" class="d-block w-100" alt="..."height= '400', width='100'>
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="{%static 'app/images/banner/slide03.jpg'%}" class="d-block w-100" alt="..."height= '400', width='100'>
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+{% endblock banner_slider%}
+{% block main-content %}
+<section id="home-new-arrivals">
+  <h2 class="section-title text-center">
+    SẢN PHẨM MỚI
+  </h2>
+<div class="row"style='width:100%'> 
+  {%for product in products %}
+    <div class= "col-lg-3" >
+      <div id="new-arrivals-slider" class="owl-carousel owl-theme " style="opacity: 1; display: block;">
+          <div class="owl-item" style="width: 335px;">
+            <div class="item ">			
+             <div class="product-item fixheight" style="height: 440px;">
+                <div class="shadow"style="height: 250px;">  <a href="{%url 'detail'%}?id={{product.id}}" > <img src="{{product.ImageURL}}" class="card-img-top" alt="...">
+                  <img src="{%  static "app/images/shadow.png" %}" class="card-img-top" alt="..." ><a/> 
+                 <a href="{% url 'checkout' %}" class="buy-now"> Mua Ngay</a>
+                </div> 
+                     
+        <div class="product-info box-element">
+            <h6><strong>{{product.name}}</strong></h6>
+                <hr>
+                <button data-product={{product.id}} data-action ="add" class="btn btn-outline-success add-btn update-cart">
+                  <span><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm vào giỏ hàng </span></button>
+                <a class="btn btn-outline-dark" href= "{%url 'detail'%}?id={{product.id}}" ><i class="fa fa-eye" aria-hidden="true"></i> Chi tiết</a>
+                <div class="product-price">
+                  <span class="current-price">${{product.price}}</span>
+                </div>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div> 
+     {% endfor %}
+</div>
+</section>
+<br/><br/><br/>
+{% endblock main-content%}
+
+
+{% block footer %}
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+      <!-- Github -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-github"></i
+      ></a>
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Form -->
+    <section class="">
+      <form action="">
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+          <!--Grid column-->
+          <div class="col-auto">
+            <p class="pt">
+              <strong>Đăng kí thông tin mới nhất</strong>
+            </p>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-5 col-12">
+            <!-- Email input -->
+            <div class="form-outline form-white mb-4">
+              <input type="email" id="form5Example21" class="form-control" />
+              <label class="form-label" for="form5Example21">Email address</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-auto">
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-outline-light mb-4">
+              Subscribe
+            </button>
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </form>
+    </section>
+    <!-- Section: Form -->
+
+    <!-- Section: Text -->
+    <section class="mb-4">
+      <p>
+        
+      </p>
+    </section>
+    <!-- Section: Text -->
+
+    <!-- Section: Links -->
+   
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 Copyright:
+    <a class="text-white" href="#">Tuấn Anh</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+ {% endblock footer%}
